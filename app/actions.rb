@@ -17,3 +17,8 @@ post '/contacts/create' do
   end
   results.to_json
 end
+
+get '/search/:search_term' do
+  contacts = Contact.where("first_name LIKE ? OR last_name like ? OR email LIKE ? OR phone LIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+  contacts.to_json
+end

@@ -48,4 +48,21 @@ $(document).ready(function() {
     $(".contact-form input").val("");
   });
 
+  // Search for contacts
+
+  $(".contact-form").on("submit", function(evt) {
+    // Prevent anything from acutally being submitted
+    evt.preventDefault();
+    // Clear existing list of contacts
+    $(".contacts-list").empty().show();
+    // Get search term from input field
+    var searchTerm = $("#search-field").val();
+    // Search contacts by any attribute
+    $.getJSON('/search/'+searchTerm, function(contacts) {
+      contacts.forEach(showContact);
+    });
+    // Clear search field
+    $(".search-form input").val("");
+  });
+
 });
