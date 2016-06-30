@@ -3,7 +3,8 @@ $(document).ready(function() {
   // Show contacts
 
   $("button#show-contacts").on("click", function() {
-    $(".contacts-list").empty();
+    $(".contact-form").hide();
+    $(".contacts-list").empty().show();
     $.getJSON('/contacts', function (contacts) {
       contacts.forEach(showContact);
     });
@@ -18,6 +19,11 @@ $(document).ready(function() {
   }
 
   // Add contacts
+
+  $("button#new-contact").on("click", function() {
+    $(".contacts-list").hide();
+    $(".contact-form").show();
+  });
 
   $(".contact-form").on("submit", function(evt) {
     // Prevent anything from acutally being submitted
